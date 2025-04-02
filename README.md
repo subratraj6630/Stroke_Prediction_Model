@@ -1,2 +1,1 @@
 # Stroke_Prediction_Model
-hii
