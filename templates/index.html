@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stroke prediction</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            /* background: linear-gradient(500deg, black, rgb(106, 106, 106)); */
+            display: flex;
+            background: linear-gradient(135deg, #1e3c72, #030303);
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            transition: background 1s ease-in-out;
+        }
+
+        /* Form Container */
+        .container {
+            width: 450px; /* Increased size */
+            background: linear-gradient(135deg, #1e3c72, #030303);
+            padding: 25px; /* Slightly larger padding */
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            box-shadow: 0 0px 35px rgb(255, 255, 255);
+            color: white;
+            /* opacity: 0; */
+            animation: popUp 0.5s ease-in-out forwards 0.8s;
+        }
+
+        /* Form Heading */
+        h2 {
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        /* Scrollable Form */
+        .scrollable-form {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        /* Labels */
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            color: #ffffff;
+        }
+
+        /* Inputs & Select */
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+            font-size: 14px;
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* Button */
+        button {
+            width: 100%;
+            background: linear-gradient(135deg, #1e3c72, #00000073);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            border-width: 3px;
+            border-color: white;
+            color: black;
+            padding: 12px;
+            /* border: none; */
+            border-radius: 5px;
+            font-size: 20px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.3s ease;
+            border-width: 0px;
+            border-color: white;
+            color: white;
+            box-shadow: 0 0px 5px rgb(255, 255, 255);
+            animation: popUp 0.5s ease-in-out forwards 0.8s;
+            
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #ffffff63, #000000);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Stroke Prediction</h2>
+        <div class="scrollable-form">
+            <form id="heartForm" action="{{ url_for('user_inputs') }}" method="post">
+                <label for="age">Age (18-90):</label>
+                <input type="number" id="age" name="age" min="18" max="90" required style="width: 95%;">
+
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="0">Male</option>
+                    <option value="1">Female</option>
+                </select>
+
+                <label for="chest_pain">Chest Pain:</label>
+                <select id="chest_pain" name="chest_pain" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+
+                <label for="shortness_of_breath">Shortness of Breath:</label>
+                <select id="shortness_of_breath" name="shortness_of_breath" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+
+                <label for="irregular_heartbeat">Irregular Heartbeat:</label>
+                <select id="irregular_heartbeat" name="irregular_heartbeat" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+
+                <label for="fatigue_weakness">Fatigue & Weakness:</label>
+                <select id="fatigue_weakness" name="fatigue_weakness" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+
+                <label for="dizziness">Dizziness:</label>
+                <select id="dizziness" name="dizziness" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+
+                <label for="swelling_edema">Swelling (Edema):</label>
+                <select id="swelling_edema" name="swelling_edema" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+
+                <label for="neck_jaw_pain">Neck or Jaw Pain:</label>
+                <select id="neck_jaw_pain" name="neck_jaw_pain" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+
+                <label for="excessive_sweating">Excessive Sweating:</label>
+                <select id="excessive_sweating" name="excessive_sweating" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+
+                <label for="persistent_cough">Persistent Cough:</label>
+                <select id="persistent_cough" name="persistent_cough" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+
+                <label for="nausea_vomiting">Nausea & Vomiting:</label>
+                <select id="nausea_vomiting" name="nausea_vomiting" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+
+                <label for="high_blood_pressure">High Blood Pressure:</label>
+                <select id="high_blood_pressure" name="high_blood_pressure" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+
+                <label for="chest_discomfort">Chest Discomfort:</label>
+                <select id="chest_discomfort" name="chest_discomfort" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+
+                <label for="cold_hands_feet">Cold Hands Feet:</label>
+                <select id="cold_hands_feet" name="cold_hands_feet" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+
+                <label for="snoring_sleep_apnea">Snoring & Sleep Apnea:</label>
+                <select id="snoring_sleep_apnea" name="snoring_sleep_apnea" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+
+                <label for="anxiety_doom">Anxiety / Feeling of Doom:</label>
+                <select id="anxiety_doom" name="anxiety_doom" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+
+                <button type="submit">Predict Risk</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
