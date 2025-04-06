@@ -61,7 +61,7 @@ def result():
     return render_template("result.html", status=status, percent=str(percent1))
 
 if __name__ == "__main__":
-    with gzip.open(r"Stroke_Prediction_Model/model_compressed.pkl.gz", "rb") as f:
+    with gzip.open(r"C:\Users\subra\OneDrive\Desktop\Development\Stroke_Prediction_Model\model_compressed.pkl.gz", "rb") as f:
         model_c = pickle.load(f)
     with gzip.open(r"C:\Users\subra\OneDrive\Desktop\Development\Stroke_Prediction_Model\model_compressed_re.pkl.gz", "rb") as f:
         model_r = pickle.load(f)
